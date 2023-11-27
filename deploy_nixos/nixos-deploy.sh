@@ -58,7 +58,10 @@ log() {
   echo "--- $*" >&2
 }
 
+log NIX_SSHOPTS="${sshOpts[*]}"
+
 copyToTarget() {
+  echo NIX_SSHOPTS="${sshOpts[*]}" nix-copy-closure --to "$targetHost" "$@" > /tmp/debug
   NIX_SSHOPTS="${sshOpts[*]}" nix-copy-closure --to "$targetHost" "$@"
 }
 
